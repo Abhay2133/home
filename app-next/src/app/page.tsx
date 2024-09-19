@@ -1,6 +1,6 @@
 import { hero_section, navLinks } from "@/constants/home";
 
-export default function Home(props: any) {
+export default function Home() {
   return (
     <main>
       {/* Header and Hero Section */}
@@ -17,12 +17,12 @@ export default function Home(props: any) {
   );
 }
 
-function Navbar(props: any) {
+function Navbar() {
   return (
     <header className="flex justify-between p-4 px-8 text-xl bg-[#dddddd44] dark:bg-[#00000033]">
       <h1>ABHAY BISHT</h1>
       <nav className="flex gap-x-10">
-        {navLinks.map((item: any, index: number) => (
+        {navLinks.map((item: {url:string, label:string}, index: number) => (
           <a
             key={index}
             className="dark:text-gray-100 font-thin"
@@ -36,7 +36,7 @@ function Navbar(props: any) {
   );
 }
 
-function HeroSection(props: any) {
+function HeroSection() {
   return (
     <section className="flex-1 flex flex-col justify-center items-center gap-y-16">
       {/* Heading */}
