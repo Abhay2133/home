@@ -3,7 +3,6 @@
 import { hero_section, navLinks, skills } from "@/constants/home";
 import { SkillData } from "@/types/home";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 export default function Home() {
