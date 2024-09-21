@@ -106,7 +106,7 @@ function Skills() {
         The Technologies That Power My Projects
       </h3>
       {/* Skills Cards */}
-      <div className="flex flex-wrap gap-5 justify-center p-10">
+      <div className="flex flex-wrap gap-2 lg:gap-5 justify-center p-10 px-5 lg:px-10">
         {skills.map((item: SkillData, index: number) => (
           <Skill key={index} {...item} />
         ))}
@@ -117,7 +117,7 @@ function Skills() {
 
 function Skill({ name, projects, time, icon }: SkillData) {
   return (
-    <div className="border-2 hover:border-gray-300 border-gray-100 shadow-md bg-white transition-all dark:border-transparent dark:bg-gray-800 flex p-2 rounded-xl gap-x-5 min-w-72">
+    <div className="border-2 hover:border-gray-300 border-gray-100 shadow-md bg-white transition-all  dark:border-transparent dark:bg-gray-800 flex p-2 rounded-xl gap-x-5 min-w-full lg:min-w-72 dark:hover:border-gray-600">
       {/* logo */}
       <div className=" flex justify-center items-center h-[90px] w-[90px] dark:bg-[#ffffff22] bg-[#00000011] rounded-lg">
         <Image
