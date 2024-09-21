@@ -5,7 +5,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --grid-color: #eee;
+  --grid-color: #ddd;
+  --radial-color-inner: #ffffff11;
+  --radial-color-outer: #fff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -13,6 +15,8 @@
     --background: #0a0a0a;
     --foreground: #ededed;
     --grid-color: #3a3a3a;
+    --radial-color-inner: #00000011;
+    --radial-color-outer: #000;
   }
 }
 
@@ -20,6 +24,10 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  scroll-behavior: smooth;
 }
 
 body * {
@@ -40,31 +48,44 @@ body * {
   height: 100%;
   margin: 0;
   background-color: var(--background);
-  background-image: 
-    /* repeating-linear-gradient(calc(-1 * var(--angle)), var(--grid-line) 0 1px, transparent var(--line-width) var(--gap)), */
-    repeating-linear-gradient( var(--grid-line) 0 1px, transparent var(--line-width) var(--gap)),
-    repeating-linear-gradient(var(--angle), var(--grid-line) 0 1px, transparent var(--line-width) var(--gap));
-  animation: bg-jiggle 5000ms linear infinite;
+  background: 
+    /* repeating-linear-gradient(calc(-1 * var(--angle)), var(--grid-line) 0 1px, transparent var(--line-width) var(--gap)), */ repeating-linear-gradient(
+      var(--grid-line) 0 1px,
+      transparent var(--line-width) var(--gap)
+    ),
+    repeating-linear-gradient(
+      var(--angle),
+      var(--grid-line) 0 1px,
+      transparent var(--line-width) var(--gap)
+    );
+  /* animation: grid-bg-dark 1000ms linear infinite; */
   transition: 500ms;
 }
 
-
-.dot-bg {
-  --dot-bg: black;
-  --dot-color: white;
-  --dot-size: 1px;
-  --dot-space: 40px;
-  
-  --grid-line: #122;
-  --gap: 40px;
-  --line-width: 2px;
-  --angle: 90deg;
-
-	background:
-    /* repeating-linear-gradient( var(--grid-line) 0 1px, transparent var(--line-width) var(--gap)),
-    repeating-linear-gradient(var(--angle), var(--grid-line) 0 1px, transparent var(--line-width) var(--gap)), */
-		linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-		linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-		var(--dot-color);
+.radial {
+  background: radial-gradient(
+    var(--radial-color-inner),
+    var(--radial-color-outer)
+  );
 }
 
+@keyframes grid-bg-dark {
+  0% {
+    --grid-line: var(--grid-color, #223);
+  }
+  20% {
+    --grid-line: #333;
+  }
+  40% {
+    --grid-line: #222;
+  }
+  60% {
+    --grid-line: #111;
+  }
+  80% {
+    --grid-line: #222;
+  }
+  100% {
+    --grid-line: var(--grid-color, #223);
+  }
+}
