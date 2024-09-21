@@ -49,6 +49,8 @@ jobs:
             echo "Unable to determine package manager"
             exit 1
           fi
+          echo $GITHUB_OUTPUT
+          cat $GITHUB_OUTPUT
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
