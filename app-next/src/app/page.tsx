@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { hero_section, navLinks, skills } from "@/constants/home";
-import { SkillData } from "@/types/home";
+import { hero_section, navLinks, projects, skills } from "@/constants/home";
+import { ProjectData, SkillData } from "@/types/home";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -16,8 +16,9 @@ export default function Home() {
         <HeroSection className="z-50" />
       </section>
 
-      {/* Skills Section */}
       <Skills />
+      <Projects />
+      <Contact/>
     </main>
   );
 }
@@ -85,9 +86,9 @@ function HeroSection({ className }: { className?: string }) {
       </div>
       {/* CTA */}
       <div className="flex flex-col gap-y-5">
-        <button className="active:scale-95 text-xl px-8 transition-all font-extrabold py-3 rounded-full border-2 dark:border-gray-200 border-gray-500 hover:bg-gray-800 hover:text-gray-100 dark:hover:bg-white dark:hover:text-gray-800">
+        <a href="#projects" className="active:scale-95 text-xl px-8 transition-all font-extrabold py-3 rounded-full border-2 dark:border-gray-200 border-gray-500 hover:bg-gray-800 hover:text-gray-100 dark:hover:bg-white dark:hover:text-gray-800">
           {hero_section.CTA}
-        </button>
+        </a>
         <a className="text-xl cursor-pointer [&>.bottom-line]:hover:scale-100 px-2">
           <div className="px-2 mb-2">{hero_section.subCTA}</div>
           <div className="bottom-line transition-transform duration-500 h-[2px] w-full scale-0 dark:bg-gray-200 bg-gray-800 rounded"></div>
@@ -99,24 +100,24 @@ function HeroSection({ className }: { className?: string }) {
 
 function Skills() {
   return (
-    <section className="py-14" id="skills">
-      <h2 className="text-6xl text-center mb-3">Skills</h2>
-      <h3 className="text-xl text-center">
+    <section className="py-14 px-24 min-h-screen" id="skills">
+      <h2 className="text-4xl mb-3 text-center">Skills</h2>
+      <h3 className="text-xl mb-5 text-center text-gray-800 dark:text-gray-500">
         The Technologies That Power My Projects
       </h3>
       {/* Skills Cards */}
-      <div className="flex flex-wrap gap-2 lg:gap-5 justify-center p-10 px-5 lg:px-10">
+      <div className="flex flex-wrap gap-2 lg:gap-5 justify-center ">
         {skills.map((item: SkillData, index: number) => (
-          <Skill key={index} {...item} />
+          <SkillCard key={index} {...item} />
         ))}
       </div>
     </section>
   );
 }
 
-function Skill({ name, projects, time, icon }: SkillData) {
+function SkillCard({ name, projects, time, icon }: SkillData) {
   return (
-    <div className="border-2 hover:border-gray-300 border-gray-100 shadow-md bg-white transition-all  dark:border-transparent dark:bg-gray-800 flex p-2 rounded-xl gap-x-5 min-w-full lg:min-w-72 dark:hover:border-gray-600">
+    <div className="border-2 hover:border-gray-300 border-gray-100 shadow bg-white transition-all  dark:border-transparent dark:bg-gray-800 flex p-2 rounded-xl gap-x-5 min-w-full lg:min-w-72 dark:hover:border-gray-600">
       {/* logo */}
       <div className=" flex justify-center items-center h-[90px] w-[90px] dark:bg-[#ffffff22] bg-[#00000011] rounded-lg">
         <Image
@@ -178,4 +179,61 @@ function Skill({ name, projects, time, icon }: SkillData) {
       </div>
     </div>
   );
+}
+
+function Projects() {
+  return (
+    <section id="projects" className="pt-5 pb-20 min-h-screen">
+      <h2 className="text-4xl text-center mb-3">Projects</h2>
+      <h3 className="text-xl text-center text-gray-800 dark:text-gray-500">
+        Creative Solutions and Achievements
+      </h3>
+      {/* Projects List */}
+      <div className="mt-5 flex gap-3 px-10 flex-wrap  justify-center">
+        {projects.map((project: ProjectData, i: number) => (
+          <ProjectCard {...project} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ProjectCard({ name, version, skills, icon }: ProjectData) {
+  return (
+    <div className=" shadow-md p-2 w-[300px] h-[290px] gap-2  bg-gray-200 dark:bg-gray-800 rounded-lg flex flex-col border border-transparent hover:border-gray-500 hover:dark:border-gray-500">
+      <div className="h-full cursor-pointer rounded bg-gray-500 w-full"></div>
+      {/* name and version */}
+      <div className="flex mt-1 ml-3 mr-2 justify-between">
+        <div className="text-lg cursor-pointer">{name}</div>
+        <div className="text-gray-500 cursor-pointer">{version}</div>
+      </div>
+      {/* Skills */}
+      <div className="flex px-2 gap-2 overflow-x-auto h-[50px] no-scrollbar">
+        {skills.map((label: string, i: number) => (
+          <div className="cursor-pointer px-3 dark:text-gray-400 py-1 rounded-full border dark:border-gray-600 border-gray-400 hover:dark:bg-gray-900 hover:bg-gray-200">{label}</div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Contact(){
+return <section id="contact" className="dark:bg-gray-900 bg-gray-100 py-12">
+    <h2 className="text-3xl font-semibold text-center mb-3">Contact Me</h2>
+    <p className="text-center text-gray-600 mb-8">Feel free to reach out through any of the platforms below:</p>
+    <div className="flex justify-center space-x-8">
+        {/* <!-- Gmail --> */}
+        <a href="mailto:abhaybishthestudent@gmail.com" target="_blank" className="transform hover:scale-110 transition">
+            <img src="/icons/mail.png" alt="Gmail" className="w-10 h-10"/>
+        </a>
+        {/* <!-- LinkedIn --> */}
+        <a href="https://www.linkedin.com/in/abhay-21m" target="_blank" className="transform hover:scale-110 transition">
+            <img src="/icons/linkedin.png" alt="LinkedIn" className="w-10 h-10"/>
+        </a>
+        {/* <!-- GitHub --> */}
+        <a href="https://github.com/abhay2133" target="_blank" className="transform hover:scale-110 transition">
+            <img src="/icons/github.png" alt="GitHub" className="w-10 h-10"/>
+        </a>
+    </div>
+</section>
 }

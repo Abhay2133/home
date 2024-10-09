@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@prisma/client": "^5.19.1",
+    "app-next": "file:",
     "dotenv": "^16.4.5",
     "next": "14.2.11",
     "react": "^18",

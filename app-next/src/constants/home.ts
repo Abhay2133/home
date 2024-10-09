@@ -1,4 +1,4 @@
-import { SkillData } from "@/types/home";
+import { ProjectData, SkillData } from "@/types/home";
 
 export const navLinks = [
   { label: "Home", url: "#" },
@@ -86,4 +86,15 @@ export const skills: SkillData[] = [
     "projects": 1,
     "time": "3+ months"
   }
+];
+
+export const projects:ProjectData[] = [
+  {name:"Blog", version:"0.0.1", skills:["react", "nextjs", "monogdb"], icon:{light:"", dark:""}},
+  {name:"YouTube Downloader", version:"0.1.2", skills:["react", "nodejs", "ytdl"], icon:{light:"", dark:""}},
+  {name:"OpenChat", version:"1.0.5", skills:["react", "express", "mongodb", "websocket"], icon:{light:"", dark:""}},
+  {name:"CampusCue", version:"0.2.4", skills:["react", "nextjs", "monogdb"], icon:{light:"", dark:""}},
+  {name:"CampusCue", version:"0.2.4", skills:["react", "nextjs", "monogdb"], icon:{light:"", dark:""}},
+  {name:"CampusCue", version:"0.2.4", skills:["react", "nextjs", "monogdb"], icon:{light:"", dark:""}},
+  {name:"CampusCue", version:"0.2.4", skills:["react", "nextjs", "monogdb"], icon:{light:"", dark:""}},
+  
 ];
