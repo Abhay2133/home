@@ -191,14 +191,14 @@ function Projects() {
       {/* Projects List */}
       <div className="mt-5 flex gap-3 px-10 flex-wrap  justify-center">
         {projects.map((project: ProjectData, i: number) => (
-          <ProjectCard {...project} />
+          <ProjectCard key={i} {...project} />
         ))}
       </div>
     </section>
   );
 }
 
-function ProjectCard({ name, version, skills, icon }: ProjectData) {
+function ProjectCard({ name, version, skills }: ProjectData) {
   return (
     <div className=" shadow-md p-2 w-[300px] h-[290px] gap-2  bg-gray-200 dark:bg-gray-800 rounded-lg flex flex-col border border-transparent hover:border-gray-500 hover:dark:border-gray-500">
       <div className="h-full cursor-pointer rounded bg-gray-500 w-full"></div>
@@ -210,7 +210,7 @@ function ProjectCard({ name, version, skills, icon }: ProjectData) {
       {/* Skills */}
       <div className="flex px-2 gap-2 overflow-x-auto h-[50px] no-scrollbar">
         {skills.map((label: string, i: number) => (
-          <div className="cursor-pointer px-3 dark:text-gray-400 py-1 rounded-full border dark:border-gray-600 border-gray-400 hover:dark:bg-gray-900 hover:bg-gray-200">{label}</div>
+          <div key={i} className="cursor-pointer px-3 dark:text-gray-400 py-1 rounded-full border dark:border-gray-600 border-gray-400 hover:dark:bg-gray-900 hover:bg-gray-200">{label}</div>
         ))}
       </div>
     </div>
