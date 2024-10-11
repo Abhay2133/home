@@ -28,12 +28,12 @@ function Navbar({ className }: { className?: string }) {
   return (
     <header
       className={
-        "flex justify-between items-center p-4 px-8 text-xl bg-[#dddddd44] dark:bg-[#00000033]" +
+        "flex justify-between items-center p-4 px-8 text-xl dark:bg-[#00000033] " +
         " " +
         className
       }
     >
-      <h1>ABHAY BISHT</h1>
+      <h1>ABHAY BISHT</h1>  
       {/* HMBGR */}
       <div
         onClick={() => setOpen(!isOpen)}
@@ -62,7 +62,7 @@ function HeroSection({ className }: { className?: string }) {
   return (
     <section
       className={
-        "flex-1 flex flex-col justify-center items-center gap-y-16" +
+        "flex-1 flex flex-col justify-center items-center gap-y-16 px-3" +
         " " +
         className
       }
@@ -100,7 +100,7 @@ function HeroSection({ className }: { className?: string }) {
 
 function Skills() {
   return (
-    <section className="py-14 px-24 min-h-screen" id="skills">
+    <section className="py-14 px-3 lg:px-24 min-h-screen" id="skills">
       <h2 className="text-4xl mb-3 text-center">Skills</h2>
       <h3 className="text-xl mb-5 text-center text-gray-800 dark:text-gray-500">
         The Technologies That Power My Projects
@@ -189,7 +189,7 @@ function Projects() {
         Creative Solutions and Achievements
       </h3>
       {/* Projects List */}
-      <div className="mt-5 flex gap-3 px-10 flex-wrap  justify-center">
+      <div className="mt-5 flex gap-3 px-3 lg:px-10 flex-wrap  justify-center">
         {projects.map((project: ProjectData, i: number) => (
           <ProjectCard key={i} {...project} />
         ))}
@@ -200,7 +200,7 @@ function Projects() {
 
 function ProjectCard({ name, version, skills }: ProjectData) {
   return (
-    <div className=" shadow-md p-2 w-[300px] h-[290px] gap-2  bg-gray-200 dark:bg-gray-800 rounded-lg flex flex-col border border-transparent hover:border-gray-500 hover:dark:border-gray-500">
+    <div className=" shadow-md p-2 md:max-w-[300px] w-full h-[290px] gap-2  bg-gray-200 dark:bg-gray-800 rounded-lg flex flex-col border border-transparent hover:border-gray-500 hover:dark:border-gray-500">
       <div className="h-full cursor-pointer rounded bg-gray-500 w-full"></div>
       {/* name and version */}
       <div className="flex mt-1 ml-3 mr-2 justify-between">
@@ -220,7 +220,7 @@ function ProjectCard({ name, version, skills }: ProjectData) {
 function Contact(){
 return <section id="contact" className="dark:bg-gray-900 bg-gray-100 py-12">
     <h2 className="text-3xl font-semibold text-center mb-3">Contact Me</h2>
-    <p className="text-center text-gray-600 mb-8">Feel free to reach out through any of the platforms below:</p>
+    <p className="text-center text-gray-600 mb-8 px-5">Feel free to reach out through any of the platforms below:</p>
     <div className="flex justify-center space-x-8">
         {/* <!-- Gmail --> */}
         <a href="mailto:abhaybishthestudent@gmail.com" target="_blank" className="transform hover:scale-110 transition">

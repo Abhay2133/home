@@ -93,8 +93,8 @@ export const projects:ProjectData[] = [
   {name:"YouTube Downloader", version:"0.1.2", skills:["react", "nodejs", "ytdl"], icon:{light:"", dark:""}},
   {name:"OpenChat", version:"1.0.5", skills:["react", "express", "mongodb", "websocket"], icon:{light:"", dark:""}},
   {name:"CampusCue", version:"0.2.4", skills:["react", "nextjs", "monogdb"], icon:{light:"", dark:""}},
-  {name:"CampusCue", version:"0.2.4", skills:["react", "nextjs", "monogdb"], icon:{light:"", dark:""}},
-  {name:"CampusCue", version:"0.2.4", skills:["react", "nextjs", "monogdb"], icon:{light:"", dark:""}},
-  {name:"CampusCue", version:"0.2.4", skills:["react", "nextjs", "monogdb"], icon:{light:"", dark:""}},
+  {name:"HotQuiz", version:"0.2.4", skills:["python3", "custom-tkinter", "socket"], icon:{light:"", dark:""}},
+  {name:"Mute Mate", version:"0.2.4", skills:["flutter", "firebase", "android"], icon:{light:"", dark:""}},
+  {name:"Kaviya", version:"0.2.4", skills:["nextjs", "postgres", "react"], icon:{light:"", dark:""}},
   
 ];
