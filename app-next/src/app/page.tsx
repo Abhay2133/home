@@ -9,8 +9,8 @@ export default function Home() {
   return (
     <main>
       {/* Header and Hero Section */}
-      <section className="min-h-screen w-full flex flex-col relative">
-        <div className="z-0 absolute h-full w-full grid-bg top-0 left-0"></div>
+      <section className="min-h-screen w-full flex flex-col relative p3d">
+        <div className="z-0 absolute grid-bg top-0 left-0"></div>
         <div className="radial absolute h-full w-full top-0 left-0 bg-red-50 z-10"></div>
         <Navbar className="z-50" />
         <HeroSection className="z-50" />

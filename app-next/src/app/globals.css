@@ -5,7 +5,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --grid-color: #ddd;
+  --grid-color: #50a4ff;
   --radial-color-inner: #ffffff11;
   --radial-color-outer: #fff;
 }
@@ -14,7 +14,8 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
-    --grid-color: #3a3a3a;
+    /* --grid-color: #3a3a3a; */
+    --grid-color: rgb(0, 92, 20);
     --radial-color-inner: #00000011;
     --radial-color-outer: #000;
   }
@@ -42,7 +43,7 @@ body * {
 
 .grid-bg {
   --grid-line: var(--grid-color, #223);
-  --gap: 40px;
+  --gap: 20px;
   --line-width: 2px;
   --angle: 90deg;
   height: 100%;
@@ -60,6 +61,25 @@ body * {
     );
   /* animation: grid-bg-dark 1000ms linear infinite; */
   transition: 500ms;
+  /* background-color: red; */
+  animation: slide-left 5s linear infinite;
+  --x-angle: 70deg;
+  --y-translate : 0px;
+  width: 4000px;
+}
+
+.p3d{
+  perspective: 400px;
+  overflow: hidden;
+}
+
+@keyframes slide-left {
+  from{
+    transform: translateX(-1260px) translateY(var(--y-translate)) rotateX(var(--x-angle));
+  }
+  to{
+    transform: translateX(-1200px) translateY(var(--y-translate)) rotateX(var(--x-angle));
+  }
 }
 
 .radial {
