@@ -28,12 +28,12 @@ export default function Home() {
 }
 
 function Grid() {
-  const canvasRef = useRef<any>(null);
+  const canvasRef = useRef(null);
   const isDarkMode = useDarkMode();
 
   useEffect(() => {
     if (!canvasRef.current) return;
-    const canvas = canvasRef.current
+    const canvas = canvasRef.current as HTMLCanvasElement
     if (!canvas?.getContext) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
