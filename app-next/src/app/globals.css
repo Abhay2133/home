@@ -119,3 +119,41 @@ body * {
 .no-scrollbar::-webkit-scrollbar {
   display: none; /* Chrome, Safari, and Opera */
 }
+
+
+/* GRID CANVAS -- CSS */
+
+#grid-container{
+  /* background-color: red; */
+  position: absolute;
+  perspective: 400px;
+  overflow: hidden;
+  min-height: 100vh;
+  position: relative;
+}
+
+#gridCanvas {
+  --angle-z: 40deg;
+  --scale: 9;
+  margin: 0 auto;
+  transform: rotateX(var(--angle-z)) scale(var(--scale));
+  animation: slide 5s linear infinite;
+  transition: 500ms;
+  position: absolute;
+  /* flex:1; */
+  width: 2000px;
+}
+
+#gridCanvas:hover {
+  /* transform: rotateX(20deg); */
+}
+
+@keyframes slide {
+  0% {
+    transform:  rotateX(var(--angle-z)) scale(var(--scale)) translateX(-40px) translateY(-40px);
+  }
+
+  100% {
+    transform:  rotateX(var(--angle-z)) scale(var(--scale)) translateX(40px) translateY(40px);
+  }
+}

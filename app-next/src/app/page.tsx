@@ -1,39 +1,83 @@
 "use client";
 
 import { hero_section, navLinks, projects, skills } from "@/constants/home";
+import useDarkMode from "@/hooks/useDarkMode";
 import { ProjectData, SkillData } from "@/types/home";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
   return (
     <main>
       {/* Header and Hero Section */}
       <section className="min-h-screen w-full flex flex-col relative p3d">
-        <div className="z-0 absolute grid-bg top-0 left-0"></div>
-        <div className="radial absolute h-full w-full top-0 left-0 bg-red-50 z-10"></div>
-        <Navbar className="z-50" />
-        <HeroSection className="z-50" />
+        {/* <div className="z-0 absolute grid-bg top-0 left-0"></div> */}
+        <Grid />
+        <div className="radial absolute h-full w-full top-0 left-0 z-10"></div>
+        <div className="absolute min-h-screen w-full flex flex-col" style={{ zIndex: 999 }}>
+          <Navbar className="z-50" />
+          <HeroSection className="z-50 flex-1" />
+        </div>
       </section>
 
       <Skills />
       <Projects />
-      <Contact/>
+      <Contact />
     </main>
   );
+}
+
+function Grid() {
+  const canvasRef = useRef<any>(null);
+  const isDarkMode = useDarkMode();
+
+  useEffect(() => {
+    if (!canvasRef.current) return;
+    const canvas = canvasRef.current
+    if (!canvas?.getContext) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    const gridSize = 40; // Size of each square in the grid
+
+    // Function to draw the grid
+    function drawGrid(ctx: CanvasRenderingContext2D) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+
+      ctx.beginPath();
+
+      // Draw vertical lines
+      for (let x = 0; x <= canvas.width; x += gridSize) {
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvas.height);
+      }
+
+      // Draw horizontal lines
+      for (let y = 0; y <= canvas.height; y += gridSize) {
+        ctx.moveTo(0, y);
+        ctx.lineTo(canvas.width, y);
+      }
+
+      ctx.strokeStyle = isDarkMode ? '#aaf' : '#005'; // Grid line color
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    // Call the drawGrid function to render the grid
+    drawGrid(ctx);
+  }, [canvasRef?.current, isDarkMode]);
+
+  return <div id="grid-container">
+    <canvas ref={canvasRef} id="gridCanvas" width="2000" height="2000"></canvas>
+  </div>
 }
 
 function Navbar({ className }: { className?: string }) {
   const [isOpen, setOpen] = useState(false);
   return (
     <header
-      className={
-        "flex justify-between items-center p-4 px-8 text-xl dark:bg-[#00000033] " +
-        " " +
-        className
-      }
+      className={`flex justify-between items-center p-4 px-8 text-xl dark:bg-[#00000033] ${className}`}
     >
-      <h1>ABHAY BISHT</h1>  
+      <h1>ABHAY BISHT</h1>
       {/* HMBGR */}
       <div
         onClick={() => setOpen(!isOpen)}
@@ -183,13 +227,13 @@ function SkillCard({ name, projects, time, icon }: SkillData) {
 
 function Projects() {
   return (
-    <section id="projects" className="pt-5 pb-20 min-h-screen">
+    <section id="projects" className="pt-5 pb-20 min-h-screen md:px-10">
       <h2 className="text-4xl text-center mb-3">Projects</h2>
       <h3 className="text-xl text-center text-gray-800 dark:text-gray-500">
         Creative Solutions and Achievements
       </h3>
       {/* Projects List */}
-      <div className="mt-5 flex gap-3 px-3 lg:px-10 flex-wrap  justify-center">
+      <div className="mt-5 flex gap-5 px-3 lg:px-10 flex-wrap  justify-center">
         {projects.map((project: ProjectData, i: number) => (
           <ProjectCard key={i} {...project} />
         ))}
@@ -200,8 +244,8 @@ function Projects() {
 
 function ProjectCard({ name, version, skills }: ProjectData) {
   return (
-    <div className=" shadow-md p-2 md:max-w-[300px] w-full h-[290px] gap-2  bg-gray-200 dark:bg-gray-800 rounded-lg flex flex-col border border-transparent hover:border-gray-500 hover:dark:border-gray-500">
-      <div className="h-full cursor-pointer rounded bg-gray-500 w-full"></div>
+    <div className="shadow-md md:max-w-[300px] w-full h-[310px] gap-2 border-gray-300 dark:border-gray-800 bg-gray-100 transition dark:bg-gray-800 rounded-lg flex flex-col border  hover:shadow-lg hover:scale-105 hover:dark:border-gray-500 p-5">
+      <div className="h-full cursor-pointer rounded bg-gray-500 w-full "></div>
       {/* name and version */}
       <div className="flex mt-1 ml-3 mr-2 justify-between">
         <div className="text-lg cursor-pointer">{name}</div>
@@ -217,23 +261,23 @@ function ProjectCard({ name, version, skills }: ProjectData) {
   );
 }
 
-function Contact(){
-return <section id="contact" className="dark:bg-gray-900 bg-gray-100 py-12">
+function Contact() {
+  return <section id="contact" className="dark:bg-gray-900 bg-gray-100 py-12">
     <h2 className="text-3xl font-semibold text-center mb-3">Contact Me</h2>
     <p className="text-center text-gray-600 mb-8 px-5">Feel free to reach out through any of the platforms below:</p>
     <div className="flex justify-center space-x-8">
-        {/* <!-- Gmail --> */}
-        <a href="mailto:abhaybishthestudent@gmail.com" target="_blank" className="transform hover:scale-110 transition">
-            <img src="/icons/mail.png" alt="Gmail" className="w-10 h-10"/>
-        </a>
-        {/* <!-- LinkedIn --> */}
-        <a href="https://www.linkedin.com/in/abhay-21m" target="_blank" className="transform hover:scale-110 transition">
-            <img src="/icons/linkedin.png" alt="LinkedIn" className="w-10 h-10"/>
-        </a>
-        {/* <!-- GitHub --> */}
-        <a href="https://github.com/abhay2133" target="_blank" className="transform hover:scale-110 transition">
-            <img src="/icons/github.png" alt="GitHub" className="w-10 h-10"/>
-        </a>
+      {/* <!-- Gmail --> */}
+      <a href="mailto:abhaybishthestudent@gmail.com" target="_blank" className="transform hover:scale-110 transition">
+        <img src="/icons/mail.png" alt="Gmail" className="w-10 h-10" />
+      </a>
+      {/* <!-- LinkedIn --> */}
+      <a href="https://www.linkedin.com/in/abhay-21m" target="_blank" className="transform hover:scale-110 transition">
+        <img src="/icons/linkedin.png" alt="LinkedIn" className="w-10 h-10" />
+      </a>
+      {/* <!-- GitHub --> */}
+      <a href="https://github.com/abhay2133" target="_blank" className="transform hover:scale-110 transition">
+        <img src="/icons/github.png" alt="GitHub" className="w-10 h-10" />
+      </a>
     </div>
-</section>
+  </section>
 }
