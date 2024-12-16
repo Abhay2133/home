@@ -13,8 +13,14 @@ export default function Home() {
       <section className="min-h-screen w-full flex flex-col relative p3d">
         {/* <div className="z-0 absolute grid-bg top-0 left-0"></div> */}
         <Grid />
-        <div className="radial absolute h-full w-full top-0 left-0 z-10"></div>
-        <div className="absolute min-h-screen w-full flex flex-col" style={{ zIndex: 999 }}>
+        <div
+          style={{ backdropFilter: "blur(2px)" }}
+          className="radial absolute h-full w-full top-0 left-0 z-10"
+        ></div>
+        <div
+          className="absolute min-h-screen w-full flex flex-col"
+          style={{ zIndex: 999 }}
+        >
           <Navbar className="z-50" />
           <HeroSection className="z-50 flex-1" />
         </div>
@@ -33,9 +39,9 @@ function Grid() {
 
   useEffect(() => {
     if (!canvasRef.current) return;
-    const canvas = canvasRef.current as HTMLCanvasElement
+    const canvas = canvasRef.current as HTMLCanvasElement;
     if (!canvas?.getContext) return;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
     const gridSize = 40; // Size of each square in the grid
 
@@ -57,7 +63,7 @@ function Grid() {
         ctx.lineTo(canvas.width, y);
       }
 
-      ctx.strokeStyle = isDarkMode ? '#aaf' : '#005'; // Grid line color
+      ctx.strokeStyle = isDarkMode ? "#aaf" : "#005"; // Grid line color
       ctx.lineWidth = 1;
       ctx.stroke();
     }
@@ -66,9 +72,16 @@ function Grid() {
     drawGrid(ctx);
   }, [canvasRef?.current, isDarkMode]);
 
-  return <div id="grid-container">
-    <canvas ref={canvasRef} id="gridCanvas" width="2000" height="2000"></canvas>
-  </div>
+  return (
+    <div id="grid-container">
+      <canvas
+        ref={canvasRef}
+        id="gridCanvas"
+        width="2000"
+        height="2000"
+      ></canvas>
+    </div>
+  );
 }
 
 function Navbar({ className }: { className?: string }) {
@@ -91,10 +104,11 @@ function Navbar({ className }: { className?: string }) {
         {navLinks.map((item: { url: string; label: string }, index: number) => (
           <a
             key={index}
-            className="dark:text-gray-100 font-thin"
+            className="dark:text-gray-100 font-thin relative hover:scale-0"
             href={item.url}
           >
-            {item.label}
+            <span>{item.label}</span>
+            <div className="h-[2px] rounded bg-white hover:scale-0 transition-transform"></div>
           </a>
         ))}
       </nav>
@@ -130,7 +144,10 @@ function HeroSection({ className }: { className?: string }) {
       </div>
       {/* CTA */}
       <div className="flex flex-col gap-y-5">
-        <a href="#projects" className="active:scale-95 text-xl px-8 transition-all font-extrabold py-3 rounded-full border-2 dark:border-gray-200 border-gray-500 hover:bg-gray-800 hover:text-gray-100 dark:hover:bg-white dark:hover:text-gray-800">
+        <a
+          href="#projects"
+          className="active:scale-95 text-xl px-8 transition-all font-extrabold py-3 rounded-full border-2 dark:border-gray-200 border-gray-500 hover:bg-gray-800 hover:text-gray-100 dark:hover:bg-white dark:hover:text-gray-800"
+        >
           {hero_section.CTA}
         </a>
         <a className="text-xl cursor-pointer [&>.bottom-line]:hover:scale-100 px-2">
@@ -244,7 +261,14 @@ function Projects() {
 
 function ProjectCard({ name, version, skills }: ProjectData) {
   return (
-    <div className="shadow-md md:max-w-[300px] w-full h-[310px] gap-2 border-gray-300 dark:border-gray-800 bg-gray-100 transition dark:bg-gray-800 rounded-lg flex flex-col border  hover:shadow-lg hover:scale-105 hover:dark:border-gray-500 p-5">
+    <div
+      className={`shadow-md md:max-w-[300px] 
+    w-full h-[310px] gap-2 border-gray-300 
+    dark:border-gray-800 bg-gray-100 transition 
+    dark:bg-gray-800 rounded-lg flex flex-col border  
+    hover:shadow-lg hover:scale-105 
+    hover:dark:border-gray-500 p-2`}
+    >
       <div className="h-full cursor-pointer rounded bg-gray-500 w-full "></div>
       {/* name and version */}
       <div className="flex mt-1 ml-3 mr-2 justify-between">
@@ -254,7 +278,12 @@ function ProjectCard({ name, version, skills }: ProjectData) {
       {/* Skills */}
       <div className="flex px-2 gap-2 overflow-x-auto h-[50px] no-scrollbar">
         {skills.map((label: string, i: number) => (
-          <div key={i} className="cursor-pointer px-3 dark:text-gray-400 py-1 rounded-full border dark:border-gray-600 border-gray-400 hover:dark:bg-gray-900 hover:bg-gray-200">{label}</div>
+          <div
+            key={i}
+            className="cursor-pointer px-3 dark:text-gray-400 py-1 rounded-full border dark:border-gray-600 border-gray-400 hover:dark:bg-gray-900 hover:bg-gray-200"
+          >
+            {label}
+          </div>
         ))}
       </div>
     </div>
@@ -262,22 +291,38 @@ function ProjectCard({ name, version, skills }: ProjectData) {
 }
 
 function Contact() {
-  return <section id="contact" className="dark:bg-gray-900 bg-gray-100 py-12">
-    <h2 className="text-3xl font-semibold text-center mb-3">Contact Me</h2>
-    <p className="text-center text-gray-600 mb-8 px-5">Feel free to reach out through any of the platforms below:</p>
-    <div className="flex justify-center space-x-8">
-      {/* <!-- Gmail --> */}
-      <a href="mailto:abhaybishthestudent@gmail.com" target="_blank" className="transform hover:scale-110 transition">
-        <img src="/icons/mail.png" alt="Gmail" className="w-10 h-10" />
-      </a>
-      {/* <!-- LinkedIn --> */}
-      <a href="https://www.linkedin.com/in/abhay-21m" target="_blank" className="transform hover:scale-110 transition">
-        <img src="/icons/linkedin.png" alt="LinkedIn" className="w-10 h-10" />
-      </a>
-      {/* <!-- GitHub --> */}
-      <a href="https://github.com/abhay2133" target="_blank" className="transform hover:scale-110 transition">
-        <img src="/icons/github.png" alt="GitHub" className="w-10 h-10" />
-      </a>
-    </div>
-  </section>
+  return (
+    <section id="contact" className="dark:bg-gray-900 bg-gray-100 py-12">
+      <h2 className="text-3xl font-semibold text-center mb-3">Contact Me</h2>
+      <p className="text-center text-gray-600 mb-8 px-5">
+        Feel free to reach out through any of the platforms below:
+      </p>
+      <div className="flex justify-center space-x-8">
+        {/* <!-- Gmail --> */}
+        <a
+          href="mailto:abhaybishthestudent@gmail.com"
+          target="_blank"
+          className="transform hover:scale-110 transition"
+        >
+          <img src="/icons/mail.png" alt="Gmail" className="w-10 h-10" />
+        </a>
+        {/* <!-- LinkedIn --> */}
+        <a
+          href="https://www.linkedin.com/in/abhay-21m"
+          target="_blank"
+          className="transform hover:scale-110 transition"
+        >
+          <img src="/icons/linkedin.png" alt="LinkedIn" className="w-10 h-10" />
+        </a>
+        {/* <!-- GitHub --> */}
+        <a
+          href="https://github.com/abhay2133"
+          target="_blank"
+          className="transform hover:scale-110 transition"
+        >
+          <img src="/icons/github.png" alt="GitHub" className="w-10 h-10" />
+        </a>
+      </div>
+    </section>
+  );
 }
