@@ -41,6 +41,10 @@ body * {
   }
 }
 
+nav a:hover div {
+  transform: scale(1);
+}
+
 .grid-bg {
   --grid-line: var(--grid-color, #223);
   --gap: 20px;

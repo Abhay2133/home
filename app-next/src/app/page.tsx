@@ -104,11 +104,11 @@ function Navbar({ className }: { className?: string }) {
         {navLinks.map((item: { url: string; label: string }, index: number) => (
           <a
             key={index}
-            className="dark:text-gray-100 font-thin relative hover:scale-0"
+            className="dark:text-gray-100 font-thin relative "
             href={item.url}
           >
             <span>{item.label}</span>
-            <div className="h-[2px] rounded bg-white hover:scale-0 transition-transform"></div>
+            <div className="h-[2px] rounded bg-white scale-0 transition-transform "></div>
           </a>
         ))}
       </nav>
