@@ -262,7 +262,7 @@ function Projects() {
 function ProjectCard({ name, version, skills }: ProjectData) {
   return (
     <div
-      className={`shadow-md md:max-w-[300px] 
+      className={`shadow-md md:max-w-[250px] 
     w-full h-[310px] gap-2 border-gray-300 
     dark:border-gray-800 bg-gray-100 transition 
     dark:bg-gray-800 rounded-lg flex flex-col border  
@@ -280,7 +280,7 @@ function ProjectCard({ name, version, skills }: ProjectData) {
         {skills.map((label: string, i: number) => (
           <div
             key={i}
-            className="cursor-pointer px-3 dark:text-gray-400 py-1 rounded-full border dark:border-gray-600 border-gray-400 hover:dark:bg-gray-900 hover:bg-gray-200"
+            className="whitespace-nowrap cursor-pointer px-3 dark:text-gray-400 py-1 rounded-full border dark:border-gray-600 border-gray-400 hover:dark:bg-gray-900 hover:bg-gray-200"
           >
             {label}
           </div>
